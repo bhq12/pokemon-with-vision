@@ -7,20 +7,13 @@ A fork of [Pokemon Red Experiments](https://github.com/PWhiddy/PokemonRedExperim
 🐍 Python 3.12 is recommended. Other versions may work but have not been tested.
 You also need to install ffmpeg and have it available in the command line.
 
-### Windows Setup
-Windows is not supported in this fork, sorry-not-sorry.
-
-### For AMD GPUs
-This fork was developed on NVidia hardware only, sorry-not-sorry.
-
-You're welcome to attempt to run this project on other hardware, but success is not guaranteed.
-
 ### Linux / MacOS
 
 1. Copy your legally obtained Pokemon Red ROM into the base directory. You can find this using google, it should be 1MB. Rename it to `PokemonRed.gb` if it is not already. The sha1 sum should be `ea9bcae617fdf159b045185467ae58b2e4a48b9a`, which you can verify by running `shasum PokemonRed.gb`. 
-2. Move into the `src/` directory:  
- ```cd src```  
-3. Install dependencies:
+2. Move into the base directory (the parent directory of this repo).
+3. Install the src dependencies:
+
+```cd src```  
 Create a new conda environment to isolate the dependencies:
 ```
 conda create -n pokemon_with_vision python=3.12
@@ -33,7 +26,13 @@ conda activate pokemon_with_vision
 Install the dependencies in your new environment
 ```pip install -r requirements.txt```
 It may be necessary in some cases to separately install the SDL libraries.
-For src MacOS users should use ```macos_requirements.txt``` instead of ```requirements.txt```
+__NOTE:__ MacOS users should use ```macos_requirements.txt``` instead of ```requirements.txt```
+__NOTE:__ If you have a 50 series GPU (eg 5070, 5080, etc.), the current stable pytorch builds do not support these GPUs yet. After installing the requirements you will need to additionally run:
+
+```
+pip install torch==2.7.1+cu128 --extra-index-url https://download.pytorch.org/whl/cu128
+```
+
 4. Run:  
 ```python run_pretrained_interactive.py```
   
