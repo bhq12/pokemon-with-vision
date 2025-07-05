@@ -1,60 +1,53 @@
 # Train RL agents to play Pokemon Red
 
-### New 10-19-24! Updated & Simplified V2 Training Script - See V2 below
-### New 1-29-24! - [Multiplayer Live Training Broadcast](https://github.com/pwhiddy/pokerl-map-viz/)  🎦 🔴 [View Here](https://pwhiddy.github.io/pokerl-map-viz/)
-Stream your training session to a shared global game map using the [Broadcast Wrapper](/baselines/stream_agent_wrapper.py)  
+A fork of [Pokemon Red Experiments](https://github.com/PWhiddy/PokemonRedExperiments) designed to augment the reinforcement learning model with additional state context derived from a YOLO object recognition model. Please check out the original repo and youtube video, it is very cool!
 
-See how in [Training Broadcast](#training-broadcast) section
-  
-## Watch the Video on Youtube! 
 
-<p float="left">
-  <a href="https://youtu.be/DcYLT37ImBY">
-    <img src="/assets/youtube.jpg?raw=true" height="192">
-  </a>
-  <a href="https://youtu.be/DcYLT37ImBY">
-    <img src="/assets/poke_map.gif?raw=true" height="192">
-  </a>
-</p>
-
-## Join the discord server
-[![Join the Discord server!](https://invidget.switchblade.xyz/RvadteZk4G)](http://discord.gg/RvadteZk4G)
-  
 ## Running the Pretrained Model Interactively 🎮  
-🐍 Python 3.10+ is recommended. Other versions may work but have not been tested.   
+🐍 Python 3.12 is recommended. Other versions may work but have not been tested.
 You also need to install ffmpeg and have it available in the command line.
 
 ### Windows Setup
-Refer to this [Windows Setup Guide](windows-setup-guide.md)
+Windows is not supported in this fork, sorry-not-sorry.
 
 ### For AMD GPUs
-Follow this [guide to install pytorch with ROCm support](https://rocm.docs.amd.com/projects/radeon/en/latest/docs/install/wsl/howto_wsl.html)
+This fork was developed on NVidia hardware only, sorry-not-sorry.
+
+You're welcome to attempt to run this project on other hardware, but success is not guaranteed.
 
 ### Linux / MacOS
 
-V2 is now recommended over the original version. You may follow all steps below but replace `baselines` with `v2`.
-
 1. Copy your legally obtained Pokemon Red ROM into the base directory. You can find this using google, it should be 1MB. Rename it to `PokemonRed.gb` if it is not already. The sha1 sum should be `ea9bcae617fdf159b045185467ae58b2e4a48b9a`, which you can verify by running `shasum PokemonRed.gb`. 
-2. Move into the `baselines/` directory:  
- ```cd baselines```  
-3. Install dependencies:  
-```pip install -r requirements.txt```  
+2. Move into the `src/` directory:  
+ ```cd src```  
+3. Install dependencies:
+Create a new conda environment to isolate the dependencies:
+```
+conda create -n pokemon_with_vision python=3.12
+```
+
+Activate the conda environment
+```
+conda activate pokemon_with_vision
+```
+Install the dependencies in your new environment
+```pip install -r requirements.txt```
 It may be necessary in some cases to separately install the SDL libraries.
-For V2 MacOS users should use ```macos_requirements.txt``` instead of ```requirements.txt```
+For src MacOS users should use ```macos_requirements.txt``` instead of ```requirements.txt```
 4. Run:  
 ```python run_pretrained_interactive.py```
   
 Interact with the emulator using the arrow keys and the `a` and `s` keys (A and B buttons).  
 You can pause the AI's input during the game by editing `agent_enabled.txt`
 
-Note: the Pokemon.gb file MUST be in the main directory and your current directory MUST be the `baselines/` directory in order for this to work.
+Note: the Pokemon.gb file MUST be in the main directory and your current directory MUST be the `src/` directory in order for this to work.
 
 ## Training the Model 🏋️ 
 
 <img src="/assets/grid.png?raw=true" height="156">
 
 
-### V2
+### src
 
 - Trains faster and with less memory
 - Reaches Cerulean
@@ -62,14 +55,14 @@ Note: the Pokemon.gb file MUST be in the main directory and your current directo
 - Other improvements
 
 Replaces the frame KNN with a coordinate based exploration reward, as well as some other tweaks.
-1. Previous steps but in the `v2` directory instead of `baselines`
+1. Previous steps but in the `src` directory instead of `src`
 2. Run:
-```python baseline_fast_v2.py```
+```python baseline_fast_src.py```
 
 ## Tracking Training Progress 📈
 
 ### Training Broadcast
-Stream your training session to a shared global game map using the [Broadcast Wrapper](/baselines/stream_agent_wrapper.py) on your environment like this:
+Stream your training session to a shared global game map using the [Broadcast Wrapper](/src/stream_agent_wrapper.py) on your environment like this:
 ```python
 env = StreamWrapper(
             env, 
@@ -103,7 +96,7 @@ Check out these awesome projects!
   <img src="/assets/pyboy.svg" height="64">
 </a>
 
-### [Stable Baselines 3](https://github.com/DLR-RM/stable-baselines3)
-<a href="https://github.com/DLR-RM/stable-baselines3">
+### [Stable src 3](https://github.com/DLR-RM/stable-src3)
+<a href="https://github.com/DLR-RM/stable-src3">
   <img src="/assets/sblogo.png" height="64">
 </a>
