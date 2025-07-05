@@ -2,12 +2,13 @@
 
 A fork of [Pokemon Red Experiments](https://github.com/PWhiddy/PokemonRedExperiments) designed to augment the reinforcement learning model with additional state context derived from a YOLO object recognition model. Please check out the original repo and youtube video, it is very cool!
 
+NOTE: This project has been developed and run solely on ubuntu with NVIDIA hardware. Other operating systems and hardware may or may not work, you are welcome to try but no support will be provided.
 
 ## Running the Pretrained Model Interactively 🎮  
 🐍 Python 3.12 is recommended. Other versions may work but have not been tested.
 You also need to install ffmpeg and have it available in the command line.
 
-### Linux / MacOS
+### Setup
 
 1. Copy your legally obtained Pokemon Red ROM into the base directory. You can find this using google, it should be 1MB. Rename it to `PokemonRed.gb` if it is not already. The sha1 sum should be `ea9bcae617fdf159b045185467ae58b2e4a48b9a`, which you can verify by running `shasum PokemonRed.gb`. 
 2. Move into the base directory (the parent directory of this repo).
@@ -26,7 +27,7 @@ conda activate pokemon_with_vision
 Install the dependencies in your new environment
 ```pip install -r requirements.txt```
 It may be necessary in some cases to separately install the SDL libraries.
-__NOTE:__ MacOS users should use ```macos_requirements.txt``` instead of ```requirements.txt```
+
 __NOTE:__ If you have a 50 series GPU (eg 5070, 5080, etc.), the current stable pytorch builds do not support these GPUs yet. After installing the requirements you will need to additionally run:
 
 ```

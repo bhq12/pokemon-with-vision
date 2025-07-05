@@ -1,7 +1,7 @@
 import sys
 from os.path import exists
 from pathlib import Path
-from red_gym_env_v2 import RedGymEnv
+from red_gym_env import RedGymEnv
 from stream_agent_wrapper import StreamWrapper
 from stable_baselines3 import PPO
 from stable_baselines3.common import env_checker
@@ -49,7 +49,7 @@ if __name__ == "__main__":
     
     print(env_config)
     
-    num_cpu = 64 # Also sets the number of episodes per training iteration
+    num_cpu = 20 # Also sets the number of episodes per training iteration
     env = SubprocVecEnv([make_env(i, env_config) for i in range(num_cpu)])
     
     checkpoint_callback = CheckpointCallback(save_freq=ep_length//2, save_path=sess_path,

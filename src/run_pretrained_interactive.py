@@ -4,7 +4,7 @@ from pathlib import Path
 import uuid
 import time
 import glob
-from red_gym_env_v2 import RedGymEnv
+from red_gym_env import RedGymEnv
 from stable_baselines3 import A2C, PPO
 from stable_baselines3.common import env_checker
 from stable_baselines3.common.vec_env import DummyVecEnv, SubprocVecEnv
