@@ -1,11 +1,12 @@
 import uuid
 import json
+import sys
 from pathlib import Path
 
 import numpy as np
 from skimage.transform import downscale_local_mean
 import matplotlib.pyplot as plt
-from pyboy import PyBoy
+from pyboy import PyBoy, pyboy
 #from pyboy.logger import log_level
 import mediapy as media
 from einops import repeat
@@ -14,6 +15,8 @@ from gymnasium import Env, spaces
 from pyboy.utils import WindowEvent
 
 from global_map import local_to_global, GLOBAL_MAP_SHAPE
+import torch
+from ultralytics import YOLO
 
 event_flags_start = 0xD747
 event_flags_end = 0xD87E # expand for SS Anne # old - 0xD7F6 
@@ -105,11 +108,21 @@ class RedGymEnv(Env):
             }
         )
 
+        #self.vision_model =  YOLO('./yolo11s.pt')
+        self.vision_model =  YOLO('./vision_model/runs/detect/sgd_high_patience_11l_run_212/weights/best.pt')
+
+        self.vision_count = 0
+        if torch.cuda.is_available():
+            self.vision_model.to(device='cuda')
+
         head = "null" if config["headless"] else "SDL2"
 
         #log_level("ERROR")
         self.pyboy = PyBoy(
             config["gb_path"],
+            #cgb=True,
+            #color_palette = pyboy.defaults["color_palette"],
+            #cgb_color_palette = pyboy.defaults["cgb_color_palette"],
             #debugging=False,
             #disable_input=False,
             window=head,
@@ -118,7 +131,7 @@ class RedGymEnv(Env):
         #self.screen = self.pyboy.botsupport_manager().screen()
 
         if not config["headless"]:
-            self.pyboy.set_emulation_speed(6)
+            self.pyboy.set_emulation_speed(50)
 
     def reset(self, seed=None, options={}):
         self.seed = seed
@@ -169,6 +182,17 @@ class RedGymEnv(Env):
 
     def render(self, reduce_res=True):
         game_pixels_render = self.pyboy.screen.ndarray[:,:,0:1]  # (144, 160, 3)
+        vision_results = self.vision_model.predict(self.pyboy.screen.image, conf=0.8)
+        self.vision_count += 1
+        print(self.vision_count)
+        found_things = False
+        #print(vision_results.to_json())
+
+        if self.vision_count > 2000 and vision_results[0].boxes is not None and len(vision_results[0].boxes.cls) > 0:
+            print("I CAN SEE")
+            print(vision_results[0].boxes)
+            print(f'LEN: {len(vision_results[0].boxes.cls)}')
+            sys.exit(0)
         if reduce_res:
             game_pixels_render = (
                 downscale_local_mean(game_pixels_render, (2,2,1))
@@ -303,11 +327,11 @@ class RedGymEnv(Env):
             f"model_reset_{self.reset_count}_id{self.instance_id}"
         ).with_suffix(".mp4")
         self.full_frame_writer = media.VideoWriter(
-            base_dir / full_name, (144, 160), fps=60, input_format="gray"
+            base_dir / full_name, (144, 160), fps=60, input_format='gray'#input_format="gray"
         )
         self.full_frame_writer.__enter__()
         self.model_frame_writer = media.VideoWriter(
-            base_dir / model_name, self.output_shape[:2], fps=60, input_format="gray"
+            base_dir / model_name, self.output_shape[:2], fps=60, input_format='gray'#input_format="gray"
         )
         self.model_frame_writer.__enter__()
         map_name = Path(
@@ -316,13 +340,13 @@ class RedGymEnv(Env):
         self.map_frame_writer = media.VideoWriter(
             base_dir / map_name,
             (self.coords_pad*4, self.coords_pad*4), 
-            fps=60, input_format="gray"
+            fps=60, input_format='gray' #input_format="gray"
         )
         self.map_frame_writer.__enter__()
 
     def add_video_frame(self):
         self.full_frame_writer.add_image(
-            self.render(reduce_res=False)[:,:,0]
+            self.render(reduce_res=False)[:,:,0],
         )
         self.model_frame_writer.add_image(
             self.render(reduce_res=True)[:,:,0]

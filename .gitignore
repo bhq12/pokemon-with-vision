@@ -2,6 +2,8 @@ __pycache__
 .DS_Store
 rollouts
 *.gb
+*.gba
+*.pt
 *.ram
 .ipynb_checkpoints
 raw_documentation
@@ -13,3 +15,4 @@ PokemonRed.gb.state
 venv*
 .python-version
 src/runs/**/*
+src/vision_model/dataset_v0.v1i.yolov11/*

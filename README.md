@@ -8,10 +8,10 @@ NOTE: This project has been developed and run solely on ubuntu with NVIDIA hardw
 🐍 Python 3.12 is recommended. Other versions may work but have not been tested.
 You also need to install ffmpeg and have it available in the command line.
 
-### Setup
+### Reinforcemment Model Setup
 
 1. Copy your legally obtained Pokemon Red ROM into the base directory. You can find this using google, it should be 1MB. Rename it to `PokemonRed.gb` if it is not already. The sha1 sum should be `ea9bcae617fdf159b045185467ae58b2e4a48b9a`, which you can verify by running `shasum PokemonRed.gb`. 
-2. Move into the base directory (the parent directory of this repo).
+2. Move into the base directory (the parent directory of this repo alongside the README.md)
 3. Install the src dependencies:
 
 ```cd src```  
@@ -34,7 +34,11 @@ __NOTE:__ If you have a 50 series GPU (eg 5070, 5080, etc.), the current stable 
 pip install torch==2.7.1+cu128 --extra-index-url https://download.pytorch.org/whl/cu128
 ```
 
-4. Run:  
+4. Fetch the utralytics YOLO11s model weights
+
+```wget https://github.com/ultralytics/assets/releases/download/v8.3.0/yolo11s.pt```
+
+5. Run:  
 ```python run_pretrained_interactive.py```
   
 Interact with the emulator using the arrow keys and the `a` and `s` keys (A and B buttons).  
@@ -42,7 +46,19 @@ You can pause the AI's input during the game by editing `agent_enabled.txt`
 
 Note: the Pokemon.gb file MUST be in the main directory and your current directory MUST be the `src/` directory in order for this to work.
 
-## Training the Model 🏋️ 
+## Vision Model Setup
+
+The vision model is trained on the following dataset
+
+https://universe.roboflow.com/pokemonfireredleafgreenv0/dataset_pokemon_firered_leafgreen_v0/dataset/1
+
+^ As the sprites in the dataset are sourced from Gameboy Advanced games, the images were transformed to greyscale to improve adaptability to recognise images in original gameboy games. In the future to improve results a pure Gameboy-sprite image dataset may be generated.
+
+1. Download the dataset as a zip in yolov11 form 
+
+2. Extract the zip and copy the dataset_v0.v1i.yolov11 directory into src/vision_model/
+
+## Training the Reinforcement Learning Model 🏋️ 
 
 <img src="/assets/grid.png?raw=true" height="156">
 
