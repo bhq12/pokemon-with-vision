@@ -8,6 +8,7 @@ from torchvision.transforms import v2
 #- Generate bounding box labels on image creation
 #- Add object sprites to the source data (houses, pokecenter, trees, water, etc.)
 #- Explore more transforms
+#- Generate train, test, and validate sets
 #- Crank the dataset size from 100 to thousands
 
 def randomly_place_sprite(image, sprite):
@@ -53,7 +54,7 @@ def generate_new_image(file_number):
         randomly_place_sprite(new_image, transformed_sprite)
 
 
-    new_image.save(f"./custom_dataset/{file_number}_{'_'.join(selected_sprites)}.png", "PNG")
+    new_image.save(f"./custom_dataset/train/{file_number}_{'_'.join(selected_sprites)}.png", "PNG")
 
 for i in range(100):
     generate_new_image(i)
