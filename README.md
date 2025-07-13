@@ -2,9 +2,9 @@
 
 A fork of [Pokemon Red Experiments](https://github.com/PWhiddy/PokemonRedExperiments) designed to augment the reinforcement learning model with additional state context derived from a YOLO object recognition model. Please check out the original repo and youtube video, it is very cool!
 
-NOTE: This project has been developed and run solely on ubuntu with NVIDIA hardware. Other operating systems and hardware may or may not work, you are welcome to try but no support will be provided.
-
 ## Running the Pretrained Model Interactively 🎮  
+NOTE: This project has been developed and run solely on ubuntu with NVIDIA hardware, other OS and hardware configurations may or may not work.
+
 🐍 Python 3.12 is recommended. Other versions may work but have not been tested.
 You also need to install ffmpeg and have it available in the command line.
 
