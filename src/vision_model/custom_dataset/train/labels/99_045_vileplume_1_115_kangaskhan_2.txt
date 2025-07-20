@@ -1,0 +1,2 @@
+045_vileplume_1.png 22 78 55 111
+115_kangaskhan_2.png 53 109 1 57

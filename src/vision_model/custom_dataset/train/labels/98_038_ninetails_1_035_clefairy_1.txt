@@ -1,0 +1,2 @@
+038_ninetails_1.png 59 115 -26 30
+035_clefairy_1.png 42 82 7 47

@@ -1,0 +1,2 @@
+110_weezing_1.png 9 65 22 78
+127_porygon_2.png -24 24 9 57

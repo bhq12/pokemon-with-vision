@@ -1,0 +1,2 @@
+127_pinsir_2.png 7 63 -6 50
+139_omastar_1.png 30 78 51 99

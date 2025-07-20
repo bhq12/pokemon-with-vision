@@ -1,0 +1,2 @@
+100_voltorb_2.png 14 54 10 50
+102_exeggcute_2.png 46 102 -17 39

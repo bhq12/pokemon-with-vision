@@ -1,0 +1,2 @@
+039_jigglypuff_1.png 46 86 78 118
+059_arcanine_2.png -24 32 -12 44

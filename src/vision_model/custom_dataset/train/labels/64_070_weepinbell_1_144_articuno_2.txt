@@ -1,0 +1,2 @@
+070_weepinbell_1.png 74 122 -10 38
+144_articuno_2.png 39 95 0 56

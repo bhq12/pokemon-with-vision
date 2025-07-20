@@ -1,0 +1,2 @@
+055_golduck_2.png 1 57 12 68
+049_venomoth_1.png 60 116 -23 33

@@ -1,0 +1,2 @@
+012_butterfree_2.png 17 73 -18 38
+141_kabutops_1.png -17 31 53 101

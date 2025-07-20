@@ -1,0 +1,2 @@
+034_nidoking_2.png 23 79 50 106
+001_bulbasaur_2.png 8 48 68 104

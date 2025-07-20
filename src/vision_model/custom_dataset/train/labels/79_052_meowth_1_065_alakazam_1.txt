@@ -1,0 +1,2 @@
+052_meowth_1.png -4 36 5 45
+065_alakazam_1.png 67 123 44 100

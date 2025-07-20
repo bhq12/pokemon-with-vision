@@ -1,0 +1,2 @@
+054_psyduck_2.png 76 116 72 112
+107_hitmonchan_1.png 59 107 31 79

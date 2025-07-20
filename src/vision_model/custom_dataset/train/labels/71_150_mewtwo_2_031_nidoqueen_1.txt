@@ -1,0 +1,2 @@
+150_mewtwo_2.png 22 78 -2 54
+031_nidoqueen_1.png -3 53 46 102

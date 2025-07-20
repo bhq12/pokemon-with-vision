@@ -1,0 +1,2 @@
+001_bulbasaur_1.png 35 75 63 103
+068_machamp_1.png 60 116 2 58

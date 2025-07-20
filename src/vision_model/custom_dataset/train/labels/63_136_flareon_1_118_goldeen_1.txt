@@ -1,0 +1,2 @@
+136_flareon_1.png 15 63 37 85
+118_goldeen_1.png 73 121 -7 41

@@ -1,0 +1,2 @@
+141_kabutops_2.png 36 84 -17 31
+040_wigglytuff_1.png 50 98 58 106

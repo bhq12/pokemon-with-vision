@@ -1,0 +1,2 @@
+012_butterfree_1.png 29 85 45 101
+149_dragonite_1.png 54 110 9 65

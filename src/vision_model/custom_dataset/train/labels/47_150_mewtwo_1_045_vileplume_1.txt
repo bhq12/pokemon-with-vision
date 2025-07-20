@@ -1,0 +1,2 @@
+150_mewtwo_1.png 31 87 54 110
+045_vileplume_1.png -14 42 50 106

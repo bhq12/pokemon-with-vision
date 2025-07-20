@@ -1,0 +1,2 @@
+094_gengar_2.png 70 118 62 110
+006_charizard_2.png -19 37 22 78

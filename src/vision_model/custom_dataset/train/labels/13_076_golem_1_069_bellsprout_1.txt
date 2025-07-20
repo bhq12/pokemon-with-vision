@@ -1,0 +1,2 @@
+076_golem_1.png 71 119 19 67
+069_bellsprout_1.png 75 115 23 63
